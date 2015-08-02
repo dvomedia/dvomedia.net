@@ -5,7 +5,9 @@ node_js:
 before_script:
 - gem install sass
 - npm install
-script: gulp
+script:
+- gulp bower
+- gulp
 deploy:
   provider: s3
   access_key_id: AKIAIJGTHZSMAJWMNFFQ
