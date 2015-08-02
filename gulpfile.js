@@ -1,10 +1,14 @@
-var gulp = require('gulp');
-var static_site = require('gulp-static-site');
+var gulp = require('gulp')
+    static_site = require('gulp-static-site')
+    sass   = require('gulp-ruby-sass') 
+    notify = require("gulp-notify") 
+    bower  = require('gulp-bower');
 
 var paths = {
     sources: ['resources/content/**','templates/**'],
     stylesheets: ['css/**'],
-    bowerDir: './bower_components' 
+    bowerDir: './bower_components' ,
+    sassPath: './resources/sass',
 };
 
 gulp.task('icons', function() { 
@@ -23,12 +27,24 @@ gulp.task('site', function () {
         .pipe(gulp.dest('web/'))
 });
 
-gulp.task('css', function () {
-    return gulp.src('css/*.css')
-        .pipe(gulp.dest('build/css'));
+gulp.task('css', function() { 
+    return gulp.src(paths.sassPath + '/style.scss')
+         .pipe(sass({
+             style: 'compressed',
+             loadPath: [
+                 './resources/sass',
+                 paths.bowerDir + '/bootstrap-sass-official/assets/stylesheets',
+                 paths.bowerDir + '/fontawesome/scss',
+             ]
+         }) 
+            .on("error", notify.onError(function (error) {
+                 return "Error: " + error.message;
+             }))) 
+         .pipe(gulp.dest('./web/dist/css')); 
 });
 
-gulp.task('default', ['site','css']);
+
+gulp.task('default', ['bower', 'icons', 'site','css']);
 
 // Rerun the task when a file changes
  gulp.task('watch', function() {
