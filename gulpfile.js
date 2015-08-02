@@ -7,8 +7,8 @@ var gulp = require('gulp')
 var paths = {
     sources: ['resources/content/**','templates/**'],
     stylesheets: ['css/**'],
-    bowerDir: './bower_components' ,
-    sassPath: './resources/sass',
+    bowerDir: 'bower_components' ,
+    sassPath: 'resources/sass',
 };
 
 gulp.task('icons', function() { 
