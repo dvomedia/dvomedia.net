@@ -1107,3 +1107,15 @@
 	}
 }
 
+.teamphoto {
+	float: right; height: 200px; width: 168px; border: 1px solid black; margin: 0 0 10px 10px; overflow: hidden;
+}
+
+@media (max-width: 400px) and (orientation: portrait) {
+	.teamphoto {
+		float: none;
+	}
+}
+
+
+
