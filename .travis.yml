@@ -15,4 +15,4 @@ deploy:
   local-dir: web
   acl: public_read
   on:
-    repo: dvomedia/travis-test
+    repo: dvomedia/dvomedia.net
